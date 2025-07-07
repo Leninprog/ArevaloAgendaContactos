@@ -15,7 +15,7 @@ namespace ArevaloAgendaContactos.ViewModels
         }
 
         [ObservableProperty]
-        private List<Contact> contactos = new();
+        private List<Models.Contact> contactos = new();
 
         public async Task RefrescarAsync()
         {
