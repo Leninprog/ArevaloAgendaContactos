@@ -3,11 +3,14 @@ using ArevaloAgendaContactos.Data;
 
 namespace ArevaloAgendaContactos.ViewModels
 {
-    public partial class LogsViewModel
+    public partial class LogsViewModel : ObservableObject
     {
-        [ObservableProperty] string[] lineas = [];
+        [ObservableProperty]
+        private string[] lineas = Array.Empty<string>();
 
-        public async Task CargarAsync() =>
+        public async Task CargarAsync()
+        {
             Lineas = await LogService.ReadAllAsync();
+        }
     }
 }

@@ -1,21 +1,27 @@
 ﻿using ArevaloAgendaContactos.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ArevaloAgendaContactos.Models;
+using com.sun.org.apache.xalan.@internal.xsltc.compiler.util;
 
 namespace ArevaloAgendaContactos.ViewModels
 {
-    public partial class AddContactViewModel(ContactDatabase db)
+    public partial class AddContactViewModel : ObservableObject
     {
-        [ObservableProperty] string nombre = string.Empty;
-        [ObservableProperty] string correo = string.Empty;
-        [ObservableProperty] string telefono = string.Empty;
-        [ObservableProperty] bool favorito;
+        private readonly ContactDatabase _db;
 
-        [ObservableProperty] string errorMsg = string.Empty;
+        public AddContactViewModel(ContactDatabase db)
+        {
+            _db = db;
+        }
+
+        [ObservableProperty] private string nombre = string.Empty;
+        [ObservableProperty] private string correo = string.Empty;
+        [ObservableProperty] private string telefono = string.Empty;
+        [ObservableProperty] private bool favorito;
+        [ObservableProperty] private string errorMsg = string.Empty;
 
         [RelayCommand]
-        async Task GuardarAsync()
+        public async Task GuardarAsync()
         {
             ErrorMsg = string.Empty;
 
@@ -25,7 +31,7 @@ namespace ArevaloAgendaContactos.ViewModels
                 return;
             }
 
-            var contacto = new Contact
+            var contacto = new Models.Contact
             {
                 Nombre = Nombre,
                 Correo = Correo,
@@ -33,13 +39,13 @@ namespace ArevaloAgendaContactos.ViewModels
                 Favorito = Favorito
             };
 
-            await db.AddContactAsync(contacto);
+            await _db.AddContactAsync(contacto);
             await LogService.AppendAsync(Nombre);
 
             Nombre = Correo = Telefono = string.Empty;
             Favorito = false;
 
-            await Shell.Current.DisplayAlert("Éxito", "Contacto guardado.", "OK");
+            await Shell.Current.DisplayAlert("Éxito", "Contacto guardado correctamente", "OK");
         }
     }
 }

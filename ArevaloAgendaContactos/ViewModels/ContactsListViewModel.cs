@@ -4,10 +4,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ArevaloAgendaContactos.ViewModels
 {
-    public partial class ContactsListViewModel(ContactDatabase db)
+    public partial class ContactsListViewModel : ObservableObject
     {
-        [ObservableProperty] List<Models.Contact> contactos = [];
-        public async Task RefrescarAsync() =>
-            Contactos = await db.GetContactsAsync();
+        private readonly ContactDatabase _db;
+
+        public ContactsListViewModel(ContactDatabase db)
+        {
+            _db = db;
+            _ = RefrescarAsync();
+        }
+
+        [ObservableProperty]
+        private List<Contact> contactos = new();
+
+        public async Task RefrescarAsync()
+        {
+            Contactos = await _db.GetContactsAsync();
+        }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArevaloAgendaContactos.Data
 {
@@ -20,5 +15,10 @@ namespace ArevaloAgendaContactos.Data
 
         public Task<List<Contact>> GetContactsAsync() =>
             _db.Table<Contact>().ToListAsync();
+
+        internal async Task AddContactAsync(Models.Contact contacto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
