@@ -7,9 +7,9 @@
     Shell.FlyoutBehavior="Flyout"
     Title="ArevaloAgendaContactos">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent Title="Nuevo" ContentTemplate="{DataTemplate local:AddContactPage}"/>
+        <ShellContent Title="Contactos" ContentTemplate="{DataTemplate local:ContactsListPage}"/>
+        <ShellContent Title="Logs" ContentTemplate="{DataTemplate local:LogsPage}"/>
+    </TabBar>
 </Shell>

@@ -6,7 +6,7 @@ namespace ArevaloAgendaContactos.ViewModels
 {
     public partial class ContactsListViewModel(ContactDatabase db)
     {
-        [ObservableProperty] List<Contact> contactos = [];
+        [ObservableProperty] List<Models.Contact> contactos = [];
         public async Task RefrescarAsync() =>
             Contactos = await db.GetContactsAsync();
     }

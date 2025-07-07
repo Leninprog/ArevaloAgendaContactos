@@ -2,11 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ArevaloAgendaContactos.Views.ContactsListPage"
-             Title="ContactsListPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Contactos">
+    <CollectionView ItemsSource="{Binding Contactos}" x:Name="Lista">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <HorizontalStackLayout Padding="10">
+                    <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                    <Label Text="{Binding Telefono}" Margin="10,0" />
+                    <Image Source="star.png"
+                       IsVisible="{Binding Favorito}" WidthRequest="20"/>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

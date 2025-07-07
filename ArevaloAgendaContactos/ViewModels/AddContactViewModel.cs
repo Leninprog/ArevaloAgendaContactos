@@ -36,7 +36,6 @@ namespace ArevaloAgendaContactos.ViewModels
             await db.AddContactAsync(contacto);
             await LogService.AppendAsync(Nombre);
 
-            // Limpieza del formulario
             Nombre = Correo = Telefono = string.Empty;
             Favorito = false;
 
