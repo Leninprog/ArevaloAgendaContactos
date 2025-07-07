@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ArevaloAgendaContactos.Data;
+using ArevaloAgendaContactos.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ArevaloAgendaContactos.ViewModels
 {
-    class ContactsListViewModel
+    public partial class ContactsListViewModel(ContactDatabase db)
     {
-
+        [ObservableProperty] List<Contact> contactos = [];
+        public async Task RefrescarAsync() =>
+            Contactos = await db.GetContactsAsync();
     }
 }
